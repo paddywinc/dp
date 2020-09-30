@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'ibm_plex_sanstext';
+  src: url('../fonts/ibmplexsans-text-webfont.woff2') format('woff2'), url('../fonts/ibmplexsans-text-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ibm_plex_sansbold';
+  src: url('../fonts/ibmplexsans-bold-webfont.woff2') format('woff2'), url('../fonts/ibmplexsans-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  font-family: "ibm_plex_sanstext", sans-serif;
+  background: #060607;
+  height: 100%;
+}
+
+header {
+}
+
+main {
+  padding: 0 0.5rem;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.strong {
+  font-family: 'ibm_plex_sansbold';
+}
+
+.container {
+  h1 {
+    color:#fff;
+    margin:2rem 0;
+  }
+}

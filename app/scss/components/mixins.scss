@@ -1,0 +1,15 @@
+@mixin nav {
+display: block;
+  content: ' ';
+  background-size: 18px 18px;
+  height: 18px;
+  width: 18px;
+  margin-left:auto;
+  transform: translateY(-1px);
+}
+
+@mixin item {
+  border-radius: 0.3rem;
+  background: $light_grey;
+  color: white;
+}

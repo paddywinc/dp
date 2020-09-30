@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' ">
+      <title>TPU-HIS</title>
+  <meta name="description" content="TPU Display">
+  <meta name="author" content="Sean Finney">
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="app/js/jquery.min.js"></script>
+<script>if (window.module) module = window.module;</script>
+
+  <link rel="stylesheet" href="app/css/style.css">
+  </head>
+  <body>
+      <header>
+      <nav>
+          <a class="home" id="home" href="#/">Home</a>
+          <a class="startup" id="startup" href="#">Start Seq</a>
+          <a class="faults" id="faults" href="#">Faults</a>
+          <a class="engineer" id="engineer" href="#">Engineer</a>
+          <a class="help" id="help" href="#">Help</a>
+      </nav>
+  </header>
+   <main id="content">
+   </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

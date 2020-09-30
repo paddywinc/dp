@@ -1,0 +1,23 @@
+.button {
+	@include item;
+	width: 100%;
+	padding:1rem 0;
+	text-decoration: none;
+	text-align: center;
+	line-height: 1.35rem;
+	height:1.35rem;	
+	text-transform:uppercase;
+	font-size:0.9rem;
+	letter-spacing: 0.04rem;
+	margin:0.25rem 0;
+
+
+	&.light {
+		background: #f2f2f2;
+	}
+
+	&.dark {
+		background: #6d6660;
+	}
+
+}

@@ -1,0 +1,156 @@
+<div class="container">
+<h1>Fault</h1>
+    <h2>Pilot Flame Failure</h2>
+
+<p>Flame Management System FMS has failed to confirm that the pilot flame is lit or is unstable. You can choose to restart or select More Information.</p>
+<a class="button" id="success" href="#">HOME</a>
+
+<!--
+<div id="graph" style="width:780px; height:400px; background: #6D664C;"></div>
+
+<script type="text/javascript" src="app/js/scripts/d3.v5.js"></script>
+    <script type="text/javascript">
+        var rawBytes =[];
+        var iolines = [];
+        var myfilesize;
+        
+        var oReq = new XMLHttpRequest();
+        oReq.open('GET', 'Log1.bin', true);
+        oReq.responseType = "arraybuffer";
+
+
+        oReq.onload = function (oEvent) {
+          var arrayBuffer = oReq.response; // Note: not oReq.responseText
+          if (arrayBuffer) {
+            rawBytes = new Uint8Array(arrayBuffer);
+            myfilesize = arrayBuffer.byteLength;
+          }
+
+          initGraph();
+        };
+      
+        oReq.send(null);
+
+        function initGraph() {
+            var urlParams = new URLSearchParams(window.location.search);
+            switch (urlParams.get('type')) {
+                case "combustor":
+                    var combustorData = getChartData(26);
+                    combustorData = combustorData.slice(combustorData.length - 1440);
+                    displayGraph(combustorData);
+                    break;
+                case "plenum":
+                    var plenumData = getChartData(24);
+                    plenumData = plenumData.slice(plenumData.length - 1440);
+                    displayGraph(plenumData);
+                    break;
+                case "quench":
+                    var quenchData = getChartData(28);
+                    quenchData = quenchData.slice(quenchData.length - 1440);
+                    displayGraph(quenchData);
+                default:
+                    return;
+            }
+        }
+
+        function displayGraph(data) {
+            // Set the dimensions of the canvas / graph
+            var margin = {top: 50, right: 50, bottom: 50, left: 50},
+                width = 780 - margin.left - margin.right,
+                height = 400 - margin.top - margin.bottom;
+
+            // Adds the svg canvas
+            var svg = d3.select('#graph')
+                .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform", 
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+            // Add X axis  it is a date format
+            var x = d3.scaleTime()
+              .domain(d3.extent(data, function(d) { return d.date; }))
+              .range([ 0, width ]);
+            svg.append("g")
+              .attr("transform", "translate(0," + height + ")")
+              .attr('class', 'axis')
+              .call(d3.axisBottom(x));
+
+            // Add Y axis
+            var y = d3.scaleLinear()
+              .domain([0, d3.max(data, function(d) { return +d.temperature; })])
+              .range([ height, 0 ]);
+            svg.append("g")
+              .attr('class', 'axis')
+              .call(d3.axisLeft(y));
+
+            // Add the line
+            svg.append("path")
+              .datum(data)
+              .attr("fill", "none")
+              .attr("stroke", "white")
+              .attr("stroke-width", 1)
+              .attr("d", d3.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.temperature) })
+                )
+        }
+
+        function getChartData(parm){
+          var chartData = [];
+          var tcvalue; 
+          var firstDate = new Date();
+          var plcdate="";
+          firstDate.setDate(firstDate.getDate() - 5);
+          var reggie = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/;
+          var dateString = "2010-08-09 01:02:03";
+          var dateArray = reggie.exec(dateString);
+          var start_location = myfilesize - (280 * 2875);
+          var x = 0;
+          for (var i = start_location; i < myfilesize; i+=280){
+            x = x + 1000;
+            tcvalue = ((rawBytes[ i + parm] * 256) + rawBytes[i+parm+1]) /1 ;
+            var newDate = new Date(firstDate);
+            newDate.setTime(newDate.getTime() + x);
+
+            plcdate="20";
+            plcdate += (String.fromCharCode(rawBytes[i+266]));
+            plcdate += (String.fromCharCode(rawBytes[i+267]));
+            plcdate += "-";
+            plcdate += (String.fromCharCode(rawBytes[i+263]));
+            plcdate += (String.fromCharCode(rawBytes[i+264]));
+            plcdate += "-";
+            plcdate += (String.fromCharCode(rawBytes[i+260]));
+            plcdate += (String.fromCharCode(rawBytes[i+261]));
+            plcdate += ", ";
+            plcdate += (String.fromCharCode(rawBytes[i+269]));
+            plcdate += (String.fromCharCode(rawBytes[i+270]));
+            plcdate += ":";
+            plcdate += (String.fromCharCode(rawBytes[i+272]));
+            plcdate += (String.fromCharCode(rawBytes[i+273]));
+            plcdate += ":";
+            plcdate += (String.fromCharCode(rawBytes[i+275]));
+            plcdate += (String.fromCharCode(rawBytes[i+276]));
+
+
+            //for (var d = 260; d < 274; d++){
+              //plcdate += (String.fromCharCode(rawBytes[i+d]));
+            //}
+            timestamp = Date.parse(plcdate.replace(', ', 'T'));
+            finalDate = new Date();
+            finalDate.setTime(timestamp);
+
+            chartData.push({
+              date: finalDate,
+              temperature: tcvalue
+            });
+            if (chartData.length > 2881) {
+            //if (chartData.length > 2880) {
+              break;
+            }
+          }
+          return chartData;
+        }
+    </script>
+

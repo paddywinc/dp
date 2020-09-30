@@ -1,0 +1,172 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 0.5rem;
+
+	.data {
+		width: calc(100vw / 3 * 2 - 0.55rem);
+		display: flex;
+		flex-direction: column;
+		height: calc(100vh - 5.33rem);
+	}
+
+	.compontents {
+		width: calc(100vw / 3);
+		height: calc(100vh - 7rem - 6vh);
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		padding: 4vh 5vw;
+
+		.top {
+			height: 60%;
+			display: flex;
+			margin-bottom:0.75rem;
+
+			.left {
+				width: calc(50% + 2vw);
+				margin-right: 1vw;
+				display: flex;
+				flex-direction: column;
+
+				div {
+					height: 25%;
+				}
+
+				.combustor {
+					height:50%;
+					margin:0.75rem 0;
+				}
+
+			}
+
+			.right {
+				width: calc(50% - 3vw);
+				margin-left: 3vw;
+			}
+
+		}
+
+		.bottom {
+			height: 40%;
+			display: flex;
+			flex-direction: column;
+
+			div {
+				height: 50%;
+
+				&.drain {
+					height:60%;
+					width: 55%;
+					margin-left: auto;
+					margin-top:0.75rem;
+
+				}
+
+			}
+
+		}
+
+		div {
+			width: 100%;
+			display: flex;
+			border-radius: 0.75rem;
+			box-shadow: 0px 0px 60px -30px rgba(0,0,0,0.75);
+
+
+			&.ok {
+				background: #48b689;
+				border:solid 3px #aec36b;
+
+			}
+
+			&.warning {
+				background:#ef9610;
+				border:solid 3px #aec36b;
+			}
+
+			&.error {
+				background:#cf4334;
+				border:solid 3px #dd2775;
+			}
+
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+
+		}
+
+	}
+
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 0.2rem;
+	align-items: stretch;
+	flex: 1;
+
+	div {
+	}
+
+	.temp {
+		@include item;
+		margin-right: 0.3rem;
+		padding: 0.5rem;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: calc(100vw / 6 * 2);
+		width:calc(100vw / 3 + 1.3rem);
+		align-items: stretch;
+
+		.deg {
+			font-size: 3.3rem;
+			font-weight: bold;
+
+			@media #{$desktop} {
+  				font-size: 10vmin;
+			}
+		}
+
+		.unit {
+			margin-left: auto;
+
+			@media #{$desktop} {
+  				font-size: 3vmin;
+			}
+		}
+
+		.part {
+			display: flex;
+			flex-direction: column;
+			flex-basis: 100%;
+
+			@media #{$desktop} {
+  				font-size: 2.75vmin;
+			}
+		}
+
+	}
+
+	.graph {
+		@include item;
+		width: calc(100vw / 6 * 4);
+		align-items: stretch;
+
+		svg {
+			width: 100%;
+
+			.line {
+				width: 100%;
+			}
+
+		}
+
+	}
+
+}

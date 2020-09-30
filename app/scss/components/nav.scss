@@ -1,0 +1,46 @@
+body.home a.home {
+  display: none; }
+
+body.startup a.startup {
+  display: none; }
+
+
+nav {
+  display: flex;
+  background: rgba(0, 181, 226, 0.1);
+  padding: 0.5rem;
+
+  a {
+    @include item;
+    margin: auto 0.3rem auto 0;
+    width: 100%;
+    padding: 1.365rem 0.868rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    display: flex;
+
+    &.active {
+      background:#00b5e2;
+    }
+
+    &.help {
+      position: relative;
+
+      &::after {
+        @include nav;
+        background-image: url('../images/help.svg');
+        background-size: 50px 18px;
+        height: 18px;
+        width: 50px;
+      }
+
+    }
+
+    &:last-of-type {
+      margin: auto 0;
+    }
+
+  }
+
+}

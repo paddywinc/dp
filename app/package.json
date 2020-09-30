@@ -1,0 +1,16 @@
+{
+  "name": "his_tpu",
+  "productName": "his_tpu",
+  "version": "1.0.0",
+  "description": "HIS datumpin HMI development",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.2.0",
+    "jquery": "^3.5.1"
+  }
+}
